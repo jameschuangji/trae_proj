@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}页面未找到 - 个人博客{% endblock %}
+
+{% block head %}
+<style>
+    .error-container {
+        text-align: center;
+        padding: 80px 20px;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .error-code {
+        font-size: 120px;
+        font-weight: 700;
+        color: #d2001f;
+        margin-bottom: 20px;
+        line-height: 1;
+    }
+    
+    .error-title {
+        font-size: 32px;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 16px;
+    }
+    
+    .error-message {
+        font-size: 18px;
+        color: #6e6e73;
+        margin-bottom: 40px;
+        max-width: 500px;
+        line-height: 1.5;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .error-btn {
+        padding: 14px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .error-btn.primary {
+        background-color: #d2001f;
+        color: white;
+    }
+    
+    .error-btn.primary:hover {
+        background-color: #b8001c;
+        transform: translateY(-2px);
+    }
+    
+    .error-btn.secondary {
+        background-color: transparent;
+        color: #d2001f;
+        border: 2px solid #d2001f;
+    }
+    
+    .error-btn.secondary:hover {
+        background-color: #d2001f;
+        color: white;
+    }
+    
+    .error-illustration {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 40px;
+        opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+        .error-code {
+            font-size: 80px;
+        }
+        
+        .error-title {
+            font-size: 24px;
+        }
+        
+        .error-message {
+            font-size: 16px;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .error-btn {
+            width: 200px;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <svg class="error-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="80" stroke="#d2001f" stroke-width="4" fill="none" opacity="0.3"/>
+        <path d="M70 70L130 130M130 70L70 130" stroke="#d2001f" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="95" stroke="#e5e5e7" stroke-width="2" fill="none"/>
+    </svg>
+    
+    <div class="error-code">404</div>
+    <h1 class="error-title">页面未找到</h1>
+    <p class="error-message">
+        抱歉，您访问的页面不存在或已被移除。<br>
+        请检查网址是否正确，或返回首页浏览其他内容。
+    </p>
+    
+    <div class="error-actions">
+        <a href="/" class="error-btn primary">
+            <span>🏠</span>
+            返回首页
+        </a>
+        <a href="javascript:history.back()" class="error-btn secondary">
+            <span>←</span>
+            返回上页
+        </a>
+    </div>
+</div>
+{% endblock %}

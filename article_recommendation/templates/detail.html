@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - 个人博客{% endblock %}
+
+{% block head %}
+<style>
+    .article-header {
+        text-align: center;
+        padding: 60px 0 40px;
+        border-bottom: 1px solid #e5e5e7;
+        margin-bottom: 40px;
+    }
+    
+    .article-title {
+        font-size: 42px;
+        font-weight: 700;
+        color: #1d1d1f;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .article-meta {
+        color: #6e6e73;
+        font-size: 16px;
+    }
+    
+    .article-content {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    
+    .article-quote {
+        font-size: 24px;
+        font-weight: 600;
+        color: #d2001f;
+        margin: 40px 0;
+        padding: 32px;
+        background: linear-gradient(135deg, #fef7f7 0%, #fff0f0 100%);
+        border-left: 6px solid #d2001f;
+        border-radius: 0 12px 12px 0;
+        line-height: 1.4;
+        position: relative;
+    }
+    
+    .article-quote::before {
+        content: '"';
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        font-size: 48px;
+        color: #d2001f;
+        opacity: 0.3;
+    }

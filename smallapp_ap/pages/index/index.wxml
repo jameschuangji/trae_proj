@@ -1,0 +1,16 @@
+<view class="container">
+  <canvas canvas-id="clockCanvas" class="clock"></canvas>
+  
+  <view class="grid-container">
+    <block wx:for="{{selectedZones}}" wx:key="index">
+      <view class="grid-item" style="background: linear-gradient(135deg, {{index%2 ? '#8EC5FC' : '#E0C3FC'}}, {{index%2 ? '#6CACF7' : '#CB9CF7'}})">
+        <picker mode="selector" range="{{timezones}}" value="{{index}}" bindchange="handleZoneChange">
+          <view class="zone-picker">{{item}}</view>
+        </picker>
+        <text class="time-text">{{currentTimes[index]}}</text>
+      </view>
+    </block>
+  </view>
+  
+  <button class="save-btn" bindtap="saveSettings">保存设置</button>
+</view>

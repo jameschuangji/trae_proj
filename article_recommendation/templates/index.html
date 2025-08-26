@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 个人博客{% endblock %}
+
+{% block head %}
+<style>
+    .hero {
+        text-align: center;
+        padding: 60px 0;
+        background: linear-gradient(135deg, #d2001f 0%, #ff6b6b 100%);
+        color: white;
+        margin-bottom: 40px;
+        border-radius: 16px;
+    }
+    
+    .hero h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+    
+    .hero p {
+        font-size: 20px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .articles-grid {
+        display: grid;
+        gap: 24px;
+    }
+    
+    .article-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .article-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #d2001f, #ff6b6b);
+    }
+    
+    .article-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .article-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+    
+    .article-quote {
+        font-size: 18px;
+        font-weight: 600;
+        color: #d2001f;
+        margin-bottom: 16px;
+        line-height: 1.4;
+        padding: 16px;
+        background-color: #fef7f7;
+        border-left: 4px solid #d2001f;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .article-review {
+        color: #6e6e73;
+        margin-bottom: 20px;
+        font-style: italic;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    .article-preview {
+        color: #1d1d1f;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        font-size: 15px;
+    }
+    
+    .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #d2001f;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .read-more:hover {
+        color: #b8001c;
+        transform: translateX(4px);
+    }
+    
+    .read-more::after {
+        content: '→';
+        transition: transform 0.3s ease;
+    }
+    
+    .read-more:hover::after {
+        transform: translateX(4px);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: #6e6e73;
+    }
+    
+    .empty-state h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: #1d1d1f;
+    }
+    
+    @media (max-width: 768px) {
+        .hero {
+            padding: 40px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+        }
+        
+        .article-card {
+            padding: 24px;
+        }
+        
+        .article-title {
+            font-size: 20px;
+        }
+        
+        .article-quote {
+            font-size: 16px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>欢迎来到我的博客</h1>
+    <p>分享思考，记录成长，传递价值</p>
+</div>
+
+<div class="articles-grid">
+    {% if articles %}
+        {% for article in articles %}
+        <article class="article-card" onclick="openArticle('{{ article.id }}')">
+            <h2 class="article-title">{{ article.title }}</h2>
+            
+            {% if article.quote %}
+            <div class="article-quote">
+                {{ article.quote }}
+            </div>
+            {% endif %}
+            
+            {% if article.review %}
+            <div class="article-review">
+                {{ article.review }}
+            </div>
+            {% endif %}
+            
+            {% if article.preview %}
+            <div class="article-preview">
+                {{ article.preview }}
+            </div>
+            {% endif %}
+            
+            <a href="/article/{{ article.id }}" class="read-more" onclick="event.stopPropagation()" target="_blank">
+                阅读全文
+            </a>
+        </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h2>暂无文章</h2>
+            <p>请稍后再来查看最新内容</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function openArticle(articleId) {
+        window.open(`/article/${articleId}`, '_blank');
+    }
+    
+    // 添加键盘导航支持
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            const focused = document.activeElement;
+            if (focused.classList.contains('article-card')) {
+                const articleId = focused.onclick.toString().match(/'([^']+)'/)[1];
+                openArticle(articleId);
+            }
+        }
+    });
+    
+    // 为文章卡片添加可访问性属性
+    document.querySelectorAll('.article-card').forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', '点击查看文章详情');
+    });
+</script>
+{% endblock %}

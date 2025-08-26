@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>飞书文档链接采集器</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      background-color: #3370ff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    #status {
+      margin-top: 12px;
+      min-height: 20px;
+    }
+    #docLink {
+      margin-top: 16px;
+      display: none;
+    }
+    #docLink a {
+      color: #3370ff;
+      text-decoration: none;
+    }
+    #docLink a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <button id="saveButton">创建空白飞书文档</button>
+  <div id="status"></div>
+  <div id="docLink">
+    <p>文档已创建：<a href="#" id="feishuDocLink" target="_blank"></a></p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

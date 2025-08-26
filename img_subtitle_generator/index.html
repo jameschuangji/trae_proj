@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片字幕生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>图片字幕生成器</h1>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="imageLoader">选择文件:</label>
+                <input type="file" id="imageLoader" name="imageLoader" accept="image/*">
+            </div>
+
+            <div class="control-group">
+                <label for="subtitleHeight">字幕高度 (px):</label>
+                <input type="number" id="subtitleHeight" value="40">
+            </div>
+
+            <div class="control-group">
+                <label for="fontSize">字体大小 (px):</label>
+                <input type="number" id="fontSize" value="20">
+            </div>
+
+            <div class="control-group">
+                <label for="fontColor">字体颜色:</label>
+                <input type="color" id="fontColor" value="#FFFFFF">
+            </div>
+
+            <div class="control-group">
+                <label for="outlineColor">轮廓颜色:</label>
+                <input type="color" id="outlineColor" value="#000000">
+            </div>
+            <div class="control-group">
+                <label for="watermarkText">水印文字:</label>
+                <input type="text" id="watermarkText" placeholder="请输入水印文字">
+            </div>
+        </div>
+
+        <div class="subtitle-input">
+            <label for="subtitleText">字幕文本 (每行一条):</label>
+            <textarea id="subtitleText" rows="5" placeholder="别吵
+我在给自己写钓鱼网站呢
+对, 这年头
+咱们猫咪都能自己写代码了"></textarea>
+        </div>
+
+        <div class="actions">
+            <button id="generateButton">生成字幕图片</button>
+            <button id="saveButton" disabled>保存图片</button>
+        </div>
+
+        <div class="image-preview">
+            <h2>预览:</h2>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

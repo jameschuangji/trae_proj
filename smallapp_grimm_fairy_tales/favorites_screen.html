@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>童话大全 - 我的收藏</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .bottom-nav {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        .story-card {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .story-card:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto max-w-md bg-white min-h-screen">
+        <!-- Header -->
+        <header class="p-4 flex justify-between items-center">
+            <h1 class="text-xl font-semibold">我的收藏</h1>
+            <div>
+                <button class="text-gray-600">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Favorite Stories List -->
+        <div class="p-4">
+            <!-- Placeholder for when no stories are favorited -->
+            <div class="text-center text-gray-500 py-16">
+                <i class="far fa-heart text-5xl mb-4"></i>
+                <p class="text-lg">暂无收藏</p>
+                <p class="text-sm mt-2">快去发现你喜欢的故事吧！</p>
+            </div>
+
+            <!-- Example of a favorited story card (to be dynamically generated later) -->
+            <!-- 
+            <a href="story_detail.html" class="story-card flex items-center py-4 hover:bg-gray-50 transition-colors">
+                <div class="flex-shrink-0 w-20 h-20">
+                    <img src="https://via.placeholder.com/80x80/DBEAFE/3B82F6?text=Story1" alt="故事图片" class="w-full h-full object-cover rounded-lg">
+                </div>
+                <div class="ml-4 flex-grow">
+                    <h3 class="font-semibold">【格林童话】收藏的故事1</h3>
+                    <p class="text-sm text-gray-500 mt-1">这是一个收藏的故事简介...</p>
+                </div>
+                <div class="ml-4">
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </a>
+            -->
+        </div>
+
+        <!-- Spacer for bottom nav -->
+        <div class="h-20"></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white p-3 flex justify-around items-center border-t border-gray-200 max-w-md mx-auto bottom-nav">
+        <a href="home_screen.html" class="text-center text-gray-500 hover:text-purple-600">
+            <i class="fas fa-home text-xl"></i>
+            <span class="block text-xs mt-1">首页</span>
+        </a>
+        <a href="create_screen.html" class="text-center text-gray-500 hover:text-purple-600">
+            <i class="fas fa-plus-circle text-xl"></i>
+            <span class="block text-xs mt-1">创作</span>
+        </a>
+        <a href="ranking_screen.html" class="text-center text-gray-500 hover:text-purple-600">
+            <i class="fas fa-list-ol text-xl"></i>
+            <span class="block text-xs mt-1">排行</span>
+        </a>
+        <a href="favorites_screen.html" class="text-center text-purple-600"> <!-- Active link -->
+            <i class="fas fa-heart text-xl"></i>
+            <span class="block text-xs mt-1">收藏</span>
+        </a>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "飞书文档链接采集器",
+  "version": "1.0.0",
+  "description": "一键保存网页链接到飞书文档",
+  "permissions": ["tabs", "activeTab", "storage"],
+  "host_permissions": ["https://open.feishu.cn/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/icon.svg"
+  },
+  "icons": {
+    "16": "images/icon.svg",
+    "32": "images/icon.svg",
+    "48": "images/icon.svg",
+    "128": "images/icon.svg"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

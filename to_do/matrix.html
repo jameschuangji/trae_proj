@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四象限 - 高效能Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+    <!-- 状态栏 -->
+    <div class="bg-black text-white h-11 flex items-center justify-between px-4 text-sm">
+        <span>9:41</span>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="flex-1 overflow-auto px-4 pt-4 pb-20">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">四象限视图</h1>
+            <p class="text-gray-600">基于重要性和紧急性的任务分类</p>
+        </div>
+
+        <!-- 四象限矩阵 -->
+        <div class="grid grid-cols-2 gap-4">
+            <!-- 第一象限：重要且紧急 -->
+            <div class="bg-red-50 rounded-xl p-4 border border-red-100">
+                <h2 class="text-lg font-semibold text-red-800 mb-3">重要且紧急</h2>
+                <div class="space-y-2">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">完成项目提案</h3>
+                        <p class="text-sm text-gray-500">今天 18:00</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">客户会议准备</h3>
+                        <p class="text-sm text-gray-500">明天 10:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二象限：重要不紧急 -->
+            <div class="bg-blue-50 rounded-xl p-4 border border-blue-100">
+                <h2 class="text-lg font-semibold text-blue-800 mb-3">重要不紧急</h2>
+                <div class="space-y-2">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">学习新技能</h3>
+                        <p class="text-sm text-gray-500">长期目标</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">健康计划</h3>
+                        <p class="text-sm text-gray-500">每周任务</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三象限：紧急不重要 -->
+            <div class="bg-yellow-50 rounded-xl p-4 border border-yellow-100">
+                <h2 class="text-lg font-semibold text-yellow-800 mb-3">紧急不重要</h2>
+                <div class="space-y-2">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">回复邮件</h3>
+                        <p class="text-sm text-gray-500">今天内</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第四象限：不紧急不重要 -->
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-800 mb-3">不紧急不重要</h2>
+                <div class="space-y-2">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <h3 class="font-medium text-gray-800">社交媒体浏览</h3>
+                        <p class="text-sm text-gray-500">休闲时间</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="fixed bottom-0 w-full h-[83px] bg-white border-t border-gray-200 flex items-center justify-around pt-2 pb-6">
+        <a href="home.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1">首页</span>
+        </a>
+        <a href="matrix.html" class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-th-large text-xl"></i>
+            <span class="text-xs mt-1">四象限</span>
+        </a>
+        <a href="create-task.html" class="flex flex-col items-center text-gray-400">
+            <div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white -mt-4">
+                <i class="fas fa-plus text-xl"></i>
+            </div>
+            <span class="text-xs mt-1">添加</span>
+        </a>
+        <a href="stats.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-chart-bar text-xl"></i>
+            <span class="text-xs mt-1">统计</span>
+        </a>
+    </nav>
+</body>
+</html>

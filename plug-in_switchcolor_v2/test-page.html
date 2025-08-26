@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwitchColor Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                              linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                              linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .test-section h2 {
+            color: #666;
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success-box {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .test-button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .test-button:hover {
+            background: #1976d2;
+        }
+        
+        #debugInfo {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 SwitchColor Extension Test Page</h1>
+        
+        <div class="test-section">
+            <h2>测试说明</h2>
+            <div class="info-box">
+                <strong>使用方法：</strong>
+                <ol>
+                    <li>确保SwitchColor扩展已安装并启用</li>
+                    <li>点击浏览器工具栏中的SwitchColor图标</li>
+                    <li>选择颜色并点击"切换背景颜色"按钮</li>
+                    <li>观察页面背景是否发生变化</li>
+                    <li>再次点击按钮测试恢复功能</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>当前页面信息</h2>
+            <div class="warning-box">
+                <strong>原始背景：</strong> 灰色渐变图案背景<br>
+                <strong>页面类型：</strong> 静态HTML页面<br>
+                <strong>目标元素：</strong> body 元素
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>测试功能</h2>
+            <button class="test-button" onclick="testExtensionState()">检查扩展状态</button>
+            <button class="test-button" onclick="testBackgroundInfo()">显示背景信息</button>
+            <button class="test-button" onclick="clearDebugInfo()">清空调试信息</button>
+            
+            <div id="debugInfo" style="margin-top: 15px;">
+点击上方按钮开始测试...
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>预期测试结果</h2>
+            <div class="success-box">
+                <strong>✅ 成功标准：</strong>
+                <ul>
+                    <li>扩展图标正常显示在工具栏</li>
+                    <li>点击图标能打开弹出窗口</li>
+                    <li>颜色选择器工作正常</li>
+                    <li>背景切换功能正常工作</li>
+                    <li>能够恢复原始背景</li>
+                    <li>状态指示器正确更新</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 测试函数
+        function testExtensionState() {
+            const debugInfo = document.getElementById('debugInfo');
+            let info = '=== 扩展状态检查 ===\n';
+            
+            // 检查是否有SwitchColor调试对象
+            if (window.SwitchColorDebug) {
+                info += '✅ SwitchColor扩展已加载\n';
+                info += `状态: ${window.SwitchColorDebug.state.isModified ? '已修改' : '原始'}\n`;
+                info += `当前颜色: ${window.SwitchColorDebug.state.currentColor || '无'}\n`;
+                info += `目标元素: ${window.SwitchColorDebug.state.targetElement ? window.SwitchColorDebug.state.targetElement.tagName : '无'}\n`;
+            } else {
+                info += '❌ SwitchColor扩展未检测到\n';
+                info += '请确保扩展已正确安装并刷新页面\n';
+            }
+            
+            info += `\n页面URL: ${window.location.href}\n`;
+            info += `用户代理: ${navigator.userAgent.substring(0, 50)}...\n`;
+            
+            debugInfo.textContent = info;
+        }
+        
+        function testBackgroundInfo() {
+            const debugInfo = document.getElementById('debugInfo');
+            let info = '=== 背景信息检查 ===\n';
+            
+            const body = document.body;
+            const computedStyle = window.getComputedStyle(body);
+            
+            info += `Body背景颜色: ${computedStyle.backgroundColor}\n`;
+            info += `Body背景图片: ${computedStyle.backgroundImage}\n`;
+            info += `Body背景: ${computedStyle.background.substring(0, 100)}...\n`;
+            
+            // 检查是否有SwitchColor修改标记
+            if (body.classList.contains('switchcolor-modified')) {
+                info += '✅ 检测到SwitchColor修改标记\n';
+            } else {
+                info += '⚪ 未检测到SwitchColor修改标记\n';
+            }
+            
+            debugInfo.textContent = info;
+        }
+        
+        function clearDebugInfo() {
+            document.getElementById('debugInfo').textContent = '调试信息已清空...';
+        }
+        
+        // 页面加载完成后自动检查
+        window.addEventListener('load', function() {
+            setTimeout(testExtensionState, 1000);
+        });
+        
+        // 监听背景变化
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    console.log('SwitchColor Test: 检测到样式变化', mutation.target);
+                }
+            });
+        });
+        
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ['style', 'class']
+        });
+    </script>
+</body>
+</html>

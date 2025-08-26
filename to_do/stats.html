@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计分析 - 高效能Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 h-screen flex flex-col">
+    <!-- 状态栏 -->
+    <div class="bg-black text-white h-11 flex items-center justify-between px-4 text-sm">
+        <span>9:41</span>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="flex-1 overflow-auto px-4 pt-4 pb-20">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">统计分析</h1>
+            <p class="text-gray-600">任务完成情况与效能分析</p>
+        </div>
+
+        <!-- 完成率概览 -->
+        <div class="bg-white rounded-xl p-6 mb-6 shadow-sm">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">本周完成率</h2>
+            <div class="relative h-40">
+                <canvas id="completionChart"></canvas>
+            </div>
+            <script>
+                const ctx = document.getElementById('completionChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['重要且紧急', '重要不紧急', '紧急不重要', '不紧急不重要'],
+                        datasets: [{
+                            label: '完成率',
+                            data: [85, 60, 90, 40],
+                            backgroundColor: [
+                                'rgba(239, 68, 68, 0.5)',
+                                'rgba(59, 130, 246, 0.5)',
+                                'rgba(245, 158, 11, 0.5)',
+                                'rgba(107, 114, 128, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgb(239, 68, 68)',
+                                'rgb(59, 130, 246)',
+                                'rgb(245, 158, 11)',
+                                'rgb(107, 114, 128)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+
+        <!-- 效能分析 -->
+        <div class="bg-white rounded-xl p-6 mb-6 shadow-sm">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">效能分析</h2>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600">重要任务占比</span>
+                    <div class="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="w-3/4 h-full bg-blue-500"></div>
+                    </div>
+                    <span class="text-blue-500 font-medium">75%</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600">时间利用率</span>
+                    <div class="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="w-4/5 h-full bg-green-500"></div>
+                    </div>
+                    <span class="text-green-500 font-medium">80%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 改进建议 -->
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">改进建议</h2>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-lightbulb text-blue-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800">增加第二象限任务</h3>
+                        <p class="text-sm text-gray-600">建议将更多时间投入到重要但不紧急的任务中，这些任务往往能带来长期价值。</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-clock text-green-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800">优化时间分配</h3>
+                        <p class="text-sm text-gray-600">建议减少在第四象限任务上的时间投入，将时间转移到更有价值的任务上。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="fixed bottom-0 w-full h-[83px] bg-white border-t border-gray-200 flex items-center justify-around pt-2 pb-6">
+        <a href="home.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1">首页</span>
+        </a>
+        <a href="matrix.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-th-large text-xl"></i>
+            <span class="text-xs mt-1">四象限</span>
+        </a>
+        <a href="create-task.html" class="flex flex-col items-center text-gray-400">
+            <div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center text-white -mt-4">
+                <i class="fas fa-plus text-xl"></i>
+            </div>
+            <span class="text-xs mt-1">添加</span>
+        </a>
+        <a href="stats.html" class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-chart-bar text-xl"></i>
+            <span class="text-xs mt-1">统计</span>
+        </a>
+    </nav>
+</body>
+</html>

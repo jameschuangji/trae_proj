@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwitchColor</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <img src="icons/icon.png" alt="SwitchColor" class="logo">
+            <h1>SwitchColor</h1>
+        </div>
+        
+        <!-- 提示文本 -->
+        <div class="message">
+            <p id="statusMessage">点击下方按钮更换背景</p>
+        </div>
+        
+        <!-- 颜色选择器区域 -->
+        <div class="color-picker-section">
+            <label for="colorPicker">选择背景颜色：</label>
+            <input type="color" id="colorPicker" value="#0066cc">
+            <span id="colorValue">#0066cc</span>
+        </div>
+        
+        <!-- 按钮区域 -->
+        <div class="button-section">
+            <button id="toggleButton" class="toggle-btn">
+                <span id="buttonText">切换背景颜色</span>
+            </button>
+        </div>
+        
+        <!-- 状态指示器 -->
+        <div class="status-indicator">
+            <div id="statusDot" class="status-dot"></div>
+            <span id="statusText">原始背景</span>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
