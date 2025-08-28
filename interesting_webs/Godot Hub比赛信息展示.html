@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godot x openKylin全国开发大赛</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #06B6D4 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gamepad-icon {
+            width: 60px;
+            height: 60px;
+            background: #3B82F6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="gamepad-icon">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.859 0-7 3.141-7 7v1h1 1 14z"/>
+                </svg>
+            </div>
+            <h1 class="text-5xl font-bold mb-4">🎮 Godot x openKylin全国开发大赛</h1>
+            <p class="text-xl opacity-90 mb-8">2025年度开源游戏开发盛会</p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-gradient-to-r from-orange-400 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                    🚀 展示创意与技术的平台·推动开源社区发展
+                </button>
+                <button class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition-all duration-300">
+                    立即报名参赛
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- 三个主要卡片 -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <!-- 比赛背景与宗旨 -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mr-4">
+                        <span class="text-white text-xl">🎯</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">比赛背景与宗旨</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">背景</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Godot Hub自2023年起每年举办一次社区开发大赛，现已成为国内Godot社区规模最大的开发比赛。</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">宗旨</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">促进使用Godot开源游戏引擎进行软件和游戏创作，激发开源社区活力，鼓励开发者的创意表达，并将优秀作品带到openKylin开源操作系统平台，增进社区间的友好交流。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 比赛规则 -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
+                        <span class="text-white text-xl">📋</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">比赛规则</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">参赛资格</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-2">
+                            <span class="mr-2">✅</span>参赛者需遵守法律和比赛规则
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <span class="mr-2">👥</span>个人或团队参赛，团队最多4人
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">赛道设置</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-2">
+                            <span class="mr-2">🔓</span>开放赛道：题材不限
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <span class="mr-2">🎲</span>命题赛道：类似Game Jam，主题在比赛开始后公布
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">作品要求</h3>
+                        <p class="text-sm text-gray-600">需在规定时间内提交作品，作品需在比赛期间主要开发，且需开源主体代码。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 参赛奖励 -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mr-4">
+                        <span class="text-white text-xl">🏆</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">参赛奖励</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">主要奖项</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">🏆最佳游戏奖：</span>
+                                <span class="text-red-600 font-bold">5000元</span>
+                                <span class="text-xs text-gray-500">+ 证书</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">🏆最具创意游戏奖：</span>
+                                <span class="text-red-600 font-bold">3000元</span>
+                                <span class="text-xs text-gray-500">+ 证书</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">🏆最佳Jam游戏奖：</span>
+                                <span class="text-red-600 font-bold">3000元</span>
+                                <span class="text-xs text-gray-500">+ 证书</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">🏆最佳应用软件奖：</span>
+                                <span class="text-red-600 font-bold">2000元</span>
+                                <span class="text-xs text-gray-500">+ 证书</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">其他奖项</h3>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">🥇一等奖 3名：</span>
+                                <span class="text-red-600 font-semibold">600元</span>
+                                <span class="text-xs text-gray-500">+ 证书 + 背包</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-700">🥈二等奖 6名：</span>
+                                <span class="text-red-600 font-semibold">300元</span>
+                                <span class="text-xs text-gray-500">+ 证书 + 衬衫</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 其他详细信息 -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- 比赛时间 -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">⏰ 比赛时间</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="text-gray-700">报名时间</span>
+                        <span class="text-blue-600 font-semibold">2025年7月5日-9月1日</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="text-gray-700">比赛时间</span>
+                        <span class="text-blue-600 font-semibold">2025年7月5日-9月10日</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="text-gray-700">提交时间</span>
+                        <span class="text-blue-600 font-semibold">2025年8月1日-9月10日</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="text-gray-700">评选时间</span>
+                        <span class="text-blue-600 font-semibold">2025年9月25日-10月15日</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2">
+                        <span class="text-gray-700">颁奖时间</span>
+                        <span class="text-blue-600 font-semibold">2025年10月20日-10月25日</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主办方信息 -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🤝 主办方与赞助单位</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">主办方</h3>
+                        <div class="flex flex-col space-y-3">
+                            <div class="bg-blue-50 px-4 py-3 rounded-lg">
+                                <span class="text-blue-800 font-semibold">Godot Hub</span>
+                            </div>
+                            <div class="bg-green-50 px-4 py-3 rounded-lg">
+                                <span class="text-green-800 font-semibold">openKylin开源社区</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-700 text-center">
+                            这场比赛为开发者提供了一个展示创意和技术的平台，同时也推动了开源社区的发展和交流。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-white py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="text-lg opacity-90">© 2025 Godot x openKylin全国开发大赛</p>
+        </div>
+    </footer>
+</body>
+</html>
