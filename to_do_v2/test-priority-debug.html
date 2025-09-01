@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优先级下拉框测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .priority-selector {
+            position: relative;
+            display: inline-block;
+        }
+        .priority-button {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .priority-button:hover {
+            background: #f9f9f9;
+        }
+        .priority-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .priority-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+            min-width: 120px;
+            margin-top: 4px;
+        }
+        .priority-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        .priority-option:hover {
+            background: #f0f0f0;
+        }
+        .hidden {
+            display: none;
+        }
+        .log {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h2>优先级下拉框功能测试</h2>
+        <p>请测试以下优先级选择器的功能：</p>
+        
+        <div class="priority-selector">
+            <button class="priority-button" id="priorityButton">
+                <span class="priority-dot" id="priorityDot" style="background-color: #eab308;"></span>
+                <span id="priorityLabel">中优先级</span>
+                <span style="margin-left: 8px;">▼</span>
+            </button>
+            
+            <div class="priority-menu hidden" id="priorityMenu">
+                <button class="priority-option" data-priority="high">
+                    <span class="priority-dot" style="background-color: #ef4444;"></span>
+                    高优先级
+                </button>
+                <button class="priority-option" data-priority="medium">
+                    <span class="priority-dot" style="background-color: #eab308;"></span>
+                    中优先级
+                </button>
+                <button class="priority-option" data-priority="low">
+                    <span class="priority-dot" style="background-color: #3b82f6;"></span>
+                    低优先级
+                </button>
+            </div>
+        </div>
+        
+        <div class="log" id="log">
+            <div>测试日志：</div>
+        </div>
+    </div>
+
+    <script>
+        let currentPriority = 'medium';
+        const priorityConfig = {
+            high: { color: '#ef4444', label: '高优先级' },
+            medium: { color: '#eab308', label: '中优先级' },
+            low: { color: '#3b82f6', label: '低优先级' }
+        };
+        
+        const priorityButton = document.getElementById('priorityButton');
+        const priorityMenu = document.getElementById('priorityMenu');
+        const priorityDot = document.getElementById('priorityDot');
+        const priorityLabel = document.getElementById('priorityLabel');
+        const log = document.getElementById('log');
+        
+        function addLog(message) {
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            log.appendChild(logEntry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function updatePriority(priority) {
+            addLog(`尝试更新优先级为: ${priority}`);
+            
+            if (priorityConfig[priority]) {
+                currentPriority = priority;
+                priorityDot.style.backgroundColor = priorityConfig[priority].color;
+                priorityLabel.textContent = priorityConfig[priority].label;
+                addLog(`✓ 优先级成功更新为: ${priority}`);
+            } else {
+                addLog(`✗ 无效的优先级值: ${priority}`);
+            }
+        }
+        
+        function toggleMenu() {
+            const isHidden = priorityMenu.classList.contains('hidden');
+            if (isHidden) {
+                priorityMenu.classList.remove('hidden');
+                addLog('优先级菜单已打开');
+            } else {
+                priorityMenu.classList.add('hidden');
+                addLog('优先级菜单已关闭');
+            }
+        }
+        
+        // 按钮点击事件
+        priorityButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            addLog('点击了优先级按钮');
+            toggleMenu();
+        });
+        
+        // 选项点击事件
+        priorityMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const option = e.target.closest('.priority-option');
+            if (option) {
+                const priority = option.getAttribute('data-priority');
+                addLog(`点击了优先级选项: ${priority}`);
+                updatePriority(priority);
+                priorityMenu.classList.add('hidden');
+                addLog('菜单已关闭');
+            }
+        });
+        
+        // 点击外部关闭菜单
+        document.addEventListener('click', function(e) {
+            if (!priorityButton.contains(e.target) && !priorityMenu.contains(e.target)) {
+                if (!priorityMenu.classList.contains('hidden')) {
+                    priorityMenu.classList.add('hidden');
+                    addLog('点击外部，菜单已关闭');
+                }
+            }
+        });
+        
+        addLog('优先级测试页面已加载');
+    </script>
+</body>
+</html>

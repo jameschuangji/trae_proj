@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优先级测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .priority-selector {
+            position: relative;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .priority-button {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .priority-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .priority-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+            min-width: 120px;
+            display: none;
+        }
+        .priority-menu.show {
+            display: block;
+        }
+        .priority-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        .priority-option:hover {
+            background-color: #f0f0f0;
+        }
+        .test-result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>优先级选择测试</h1>
+        <p>点击下面的优先级按钮，测试选择功能是否正常工作：</p>
+        
+        <div class="priority-selector">
+            <button class="priority-button" onclick="toggleMenu()">
+                <span class="priority-dot" id="currentDot" style="background-color: #eab308;"></span>
+                <span id="currentLabel">中优先级</span>
+                <span style="margin-left: 8px;">▼</span>
+            </button>
+            
+            <div class="priority-menu" id="priorityMenu">
+                <button class="priority-option" onclick="selectPriority('high', '#ef4444', '高优先级')">
+                    <span class="priority-dot" style="background-color: #ef4444;"></span>
+                    高优先级
+                </button>
+                <button class="priority-option" onclick="selectPriority('medium', '#eab308', '中优先级')">
+                    <span class="priority-dot" style="background-color: #eab308;"></span>
+                    中优先级
+                </button>
+                <button class="priority-option" onclick="selectPriority('low', '#3b82f6', '低优先级')">
+                    <span class="priority-dot" style="background-color: #3b82f6;"></span>
+                    低优先级
+                </button>
+            </div>
+        </div>
+        
+        <div class="test-result" id="testResult">
+            当前选择的优先级: <strong id="selectedPriority">medium</strong>
+        </div>
+        
+        <h2>测试说明</h2>
+        <ul>
+            <li>点击优先级按钮应该打开下拉菜单</li>
+            <li>点击菜单中的选项应该更新当前优先级</li>
+            <li>选择后菜单应该自动关闭</li>
+            <li>按钮显示应该反映当前选择的优先级</li>
+        </ul>
+    </div>
+    
+    <script>
+        let currentPriority = 'medium';
+        
+        function toggleMenu() {
+            const menu = document.getElementById('priorityMenu');
+            menu.classList.toggle('show');
+        }
+        
+        function selectPriority(priority, color, label) {
+            currentPriority = priority;
+            
+            // 更新按钮显示
+            document.getElementById('currentDot').style.backgroundColor = color;
+            document.getElementById('currentLabel').textContent = label;
+            
+            // 更新测试结果
+            document.getElementById('selectedPriority').textContent = priority;
+            
+            // 关闭菜单
+            document.getElementById('priorityMenu').classList.remove('show');
+            
+            console.log('选择了优先级:', priority);
+        }
+        
+        // 点击外部关闭菜单
+        document.addEventListener('click', function(event) {
+            const selector = document.querySelector('.priority-selector');
+            if (!selector.contains(event.target)) {
+                document.getElementById('priorityMenu').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
